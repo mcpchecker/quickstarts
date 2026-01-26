@@ -1,0 +1,28 @@
+kind: Eval
+metadata:
+  name: "demo-server-test"
+
+config:
+  # Use Claude Code as the AI agent
+  agent:
+    type: "builtin.claude-code"
+
+  # MCP server configuration
+  mcpConfigFile: mcp-config.yaml
+
+  # LLM judge configuration
+  llmJudge:
+    env:
+      baseUrlKey: JUDGE_BASE_URL
+      apiKeyKey: JUDGE_API_KEY
+      modelNameKey: JUDGE_MODEL_NAME
+
+  # Test tasks
+  taskSets:
+    - path: tasks/add.yaml
+      assertions:
+        toolsUsed:
+          - server: demo-server
+            tool: add
+        minToolCalls: 1
+        maxToolCalls: 5
