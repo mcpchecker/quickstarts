@@ -1,0 +1,14 @@
+kind: Task
+apiVersion: mcpchecker/v1alpha2
+metadata:
+  name: "add-test"
+  difficulty: easy
+
+spec:
+  verify:
+    - llmJudge:
+        contains: "8"
+
+  prompt:
+    inline: |
+      I need to know what 5 + 3 equals. Can you help me figure this out?

@@ -1,0 +1,128 @@
+[
+  {
+    "taskName": "add-test",
+    "taskPath": "/home/matzew/go/src/github.com/mcpchecker/quickstarts/getting-started/evals/tasks/add.yaml",
+    "taskPassed": true,
+    "taskOutput": "5 + 3 equals **8**.\n",
+    "taskJudgeReason": "The MODEL_RESPONSE contains the core information from the REFERENCE_ANSWER. Both indicate that 5 + 3 equals 8, fulfilling the CONTAINS criterion with no information missing or contradicting.",
+    "difficulty": "easy",
+    "assertionResults": {
+      "toolsUsed": {
+        "passed": true
+      },
+      "minToolCalls": {
+        "passed": true
+      },
+      "maxToolCalls": {
+        "passed": true
+      }
+    },
+    "allAssertionsPassed": true,
+    "callHistory": {
+      "ToolCalls": [
+        {
+          "serverName": "demo-server",
+          "timestamp": "2026-01-26T17:04:37.263307387+01:00",
+          "success": true,
+          "name": "add",
+          "result": {
+            "content": [
+              {
+                "type": "text",
+                "text": "8"
+              }
+            ],
+            "structuredContent": {
+              "result": 8
+            }
+          },
+          "request": {
+            "Session": {},
+            "Params": {
+              "_meta": {
+                "claudecode/toolUseId": "toolu_vrtx_01JTCBhXqk6MLB2bjtDNZfsM"
+              },
+              "name": "add",
+              "arguments": {
+                "a": 5,
+                "b": 3
+              }
+            },
+            "Extra": {
+              "TokenInfo": null,
+              "Header": {
+                "Accept": [
+                  "application/json, text/event-stream"
+                ],
+                "Accept-Encoding": [
+                  "gzip, deflate"
+                ],
+                "Accept-Language": [
+                  "*"
+                ],
+                "Connection": [
+                  "keep-alive"
+                ],
+                "Content-Length": [
+                  "167"
+                ],
+                "Content-Type": [
+                  "application/json"
+                ],
+                "Mcp-Protocol-Version": [
+                  "2025-11-25"
+                ],
+                "Mcp-Session-Id": [
+                  "RI7MWODIF2R4WUFHCGP2DZBS7X"
+                ],
+                "Sec-Fetch-Mode": [
+                  "cors"
+                ],
+                "User-Agent": [
+                  "claude-code/2.1.19"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "ResourceReads": null,
+      "PromptGets": null
+    },
+    "setupOutput": {
+      "Steps": [],
+      "Success": true,
+      "Error": ""
+    },
+    "agentOutput": {
+      "Steps": [
+        {
+          "type": "agent",
+          "success": true,
+          "message": "5 + 3 equals **8**.\n",
+          "outputs": {
+            "output": "5 + 3 equals **8**.\n"
+          }
+        }
+      ],
+      "Success": true,
+      "Error": ""
+    },
+    "verifyOutput": {
+      "Steps": [
+        {
+          "type": "llmJudge",
+          "success": true,
+          "message": "The MODEL_RESPONSE contains the core information from the REFERENCE_ANSWER. Both indicate that 5 + 3 equals 8, fulfilling the CONTAINS criterion with no information missing or contradicting."
+        }
+      ],
+      "Success": true,
+      "Error": ""
+    },
+    "cleanupOutput": {
+      "Steps": [],
+      "Success": true,
+      "Error": ""
+    }
+  }
+]
