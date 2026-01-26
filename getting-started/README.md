@@ -100,7 +100,7 @@ In another terminal, run mcpchecker:
 
 ```bash
 cd evals
-mcpchecker eval eval.yaml
+mcpchecker check eval.yaml
 ```
 
 You should see:
