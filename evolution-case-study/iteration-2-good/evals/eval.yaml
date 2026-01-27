@@ -1,0 +1,44 @@
+kind: Eval
+metadata:
+  name: "text-processing-good-test"
+
+config:
+  # Use Claude Code as the AI agent
+  agent:
+    type: "builtin.claude-code"
+
+  # MCP server configuration
+  mcpConfigFile: mcp-config.yaml
+
+  # LLM judge configuration
+  llmJudge:
+    env:
+      baseUrlKey: JUDGE_BASE_URL
+      apiKeyKey: JUDGE_API_KEY
+      modelNameKey: JUDGE_MODEL_NAME
+
+  # Test tasks
+  taskSets:
+    - path: tasks/uppercase.yaml
+      assertions:
+        toolsUsed:
+          - server: text-server
+            tool: to_uppercase
+        minToolCalls: 1
+        maxToolCalls: 5
+
+    - path: tasks/lowercase.yaml
+      assertions:
+        toolsUsed:
+          - server: text-server
+            tool: to_lowercase
+        minToolCalls: 1
+        maxToolCalls: 5
+
+    - path: tasks/title-case.yaml
+      assertions:
+        toolsUsed:
+          - server: text-server
+            tool: to_title_case
+        minToolCalls: 1
+        maxToolCalls: 5

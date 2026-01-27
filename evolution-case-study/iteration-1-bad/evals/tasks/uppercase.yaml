@@ -1,0 +1,16 @@
+kind: Task
+apiVersion: mcpchecker/v1alpha2
+metadata:
+  name: "uppercase-test"
+  difficulty: easy
+
+spec:
+  verify:
+    - llmJudge:
+        contains: "HELLO WORLD"
+
+  prompt:
+    inline: |
+      I have this text: hello world
+
+      Please convert it to all uppercase letters.
