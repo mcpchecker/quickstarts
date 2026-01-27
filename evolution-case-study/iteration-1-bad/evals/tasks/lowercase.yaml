@@ -1,0 +1,16 @@
+kind: Task
+apiVersion: mcpchecker/v1alpha2
+metadata:
+  name: "lowercase-test"
+  difficulty: easy
+
+spec:
+  verify:
+    - llmJudge:
+        contains: "hello world"
+
+  prompt:
+    inline: |
+      I have this text: HELLO WORLD
+
+      Please convert it to all lowercase letters.

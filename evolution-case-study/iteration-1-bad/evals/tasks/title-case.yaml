@@ -1,0 +1,16 @@
+kind: Task
+apiVersion: mcpchecker/v1alpha2
+metadata:
+  name: "title-case-test"
+  difficulty: medium
+
+spec:
+  verify:
+    - llmJudge:
+        contains: "Hello World"
+
+  prompt:
+    inline: |
+      I have this text: hello world
+
+      Please format it with title case (first letter of each word capitalized).

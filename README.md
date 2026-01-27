@@ -25,6 +25,23 @@ Think of it as integration testing for AI tool use.
 
 **Perfect for:** First-time users who want to understand the basics of MCPChecker.
 
+---
+
+### 2. [Evolution Case Study](./evolution-case-study/)
+**Difficulty:** Intermediate
+**Time:** 15-20 minutes
+**What you'll learn:**
+- How documentation quality affects agent success
+- Compare bad vs good tool documentation (2 iterations)
+- See identical code produce different test results
+- Understand what makes tools discoverable when they overlap in functionality
+
+**Perfect for:** Users who want to see MCPChecker's real value and learn documentation best practices.
+
+**Key insight:** Same functionality (4 text processing tools), different documentation = different test results. Proves MCPChecker tests discoverability, not just functionality.
+
+---
+
 ## Getting Help
 
 - 📖 [Full Documentation](https://github.com/mcpchecker/mcpchecker)
