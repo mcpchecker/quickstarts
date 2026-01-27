@@ -112,7 +112,9 @@ def to_lowercase(text: str) -> str:
 
 ## The Test Tasks
 
-Both iterations are tested with the **same natural language prompts** that don't mention tool names:
+Both iterations are tested with the **same natural language prompts** that don't mention tool names.
+
+> **Note:** The examples below are simplified pseudocode to illustrate the test concepts. The actual test files use the full MCPChecker YAML structure. See `evals/tasks/` directories for complete task definitions.
 
 ### Task 1: Uppercase Conversion
 ```yaml
@@ -157,6 +159,13 @@ Since the **code is identical**, differences in test results prove documentation
 **Actual pass rates:**
 - **Iteration 1 (Bad):** 0/3 tests fully passed, 6/9 assertions passed
 - **Iteration 2 (Good):** 3/3 tests passed, 9/9 assertions passed
+
+> **About assertions:** Each test checks multiple MCP-specific assertions:
+> - **minToolCalls: 1** - Agent must call at least one tool (can't just calculate the answer)
+> - **maxToolCalls: 5** - Agent can't try unlimited tools (prevents brute-force guessing)
+> - **toolsUsed** - Agent must call the specific expected tool (e.g., `to_uppercase` for uppercase conversion)
+>
+> In the bad iteration, the agent sometimes got the correct output but failed because it called the wrong tool or tried too many tools trying to figure out which generic name did what.
 
 **What happened in the bad iteration:**
 - Agent couldn't discover which generic tool (`process`, `transform`, `convert`) does what
