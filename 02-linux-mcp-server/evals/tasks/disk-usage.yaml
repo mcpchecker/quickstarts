@@ -1,0 +1,22 @@
+kind: Task
+apiVersion: mcpchecker/v1alpha2
+metadata:
+  name: "disk-usage-test"
+  difficulty: easy
+  description: |
+    Tests if the agent can discover the get_disk_usage tool from a natural language
+    request about disk space. The judge verifies that the output contains disk space
+    information including available space and filesystem details.
+spec:
+  verify:
+    - llmJudge:
+        contains: "disk space"
+        reason: "Verify the output discusses disk space (not just 'disk' or 'usage' separately)"
+    - llmJudge:
+        contains: "available"
+        reason: "Verify the output shows available/free space, which was requested"
+  prompt:
+    inline: |
+      I want to check how much disk space is available on this system.
+
+      Please show me the disk usage information.

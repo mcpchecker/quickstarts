@@ -1,0 +1,36 @@
+kind: Eval
+metadata:
+  name: "linux-diagnostic-test"
+
+config:
+  # Use Claude Code as the AI agent
+  agent:
+    type: "builtin.claude-code"
+
+  # MCP server configuration
+  mcpConfigFile: mcp-config.yaml
+
+  # LLM judge configuration
+  llmJudge:
+    env:
+      baseUrlKey: JUDGE_BASE_URL
+      apiKeyKey: JUDGE_API_KEY
+      modelNameKey: JUDGE_MODEL_NAME
+
+  # Test tasks
+  taskSets:
+    - path: tasks/system-info.yaml
+      assertions:
+        toolsUsed:
+          - server: linux-server
+            tool: get_system_information
+        minToolCalls: 1
+        maxToolCalls: 3
+
+    - path: tasks/disk-usage.yaml
+      assertions:
+        toolsUsed:
+          - server: linux-server
+            tool: get_disk_usage
+        minToolCalls: 1
+        maxToolCalls: 3
