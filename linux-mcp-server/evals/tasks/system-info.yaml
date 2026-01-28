@@ -1,0 +1,22 @@
+kind: Task
+apiVersion: mcpchecker/v1alpha2
+metadata:
+  name: "system-info-test"
+  difficulty: easy
+  description: |
+    Tests if the agent can discover the get_system_information tool from a natural
+    language request for "basic information about this Linux system". The judge
+    verifies that the output contains OS and kernel information as requested.
+spec:
+  verify:
+    - llmJudge:
+        contains: "operating system"
+        reason: "Verify the output identifies the operating system (e.g., 'Fedora Linux 43')"
+    - llmJudge:
+        contains: "kernel"
+        reason: "Verify the output includes the kernel version as requested"
+  prompt:
+    inline: |
+      I need to know basic information about this Linux system.
+
+      Please tell me what operating system it's running and the kernel version.

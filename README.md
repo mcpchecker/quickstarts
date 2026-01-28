@@ -27,7 +27,22 @@ Think of it as integration testing for AI tool use.
 
 ---
 
-### 2. [Evolution Case Study](./evolution-case-study/)
+### 2. [Linux MCP Server](./linux-mcp-server/)
+**Difficulty:** Beginner
+**Time:** 10 minutes
+**What you'll learn:**
+- Test a stdio/local MCP server (not HTTP)
+- Configure MCPChecker for subprocess-based servers
+- Write evals for system diagnostic tools
+- Test read-only tools that gather system information
+
+**Perfect for:** Users who want to test local CLI tools or understand stdio transport vs HTTP.
+
+**Key insight:** Stdio servers are simpler for local-only tools - no HTTP endpoints needed, MCPChecker manages the subprocess lifecycle.
+
+---
+
+### 3. [Evolution Case Study](./evolution-case-study/)
 **Difficulty:** Intermediate
 **Time:** 15-20 minutes
 **What you'll learn:**

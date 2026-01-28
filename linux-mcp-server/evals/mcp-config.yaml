@@ -1,0 +1,6 @@
+mcpServers:
+  linux-server:
+    type: stdio
+    command: linux-mcp-server
+    args: []
+    enableAllTools: true
