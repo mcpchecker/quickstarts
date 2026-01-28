@@ -14,7 +14,7 @@ Think of it as integration testing for AI tool use.
 
 ## Available Quickstarts
 
-### 1. [Getting Started](./getting-started/)
+### 1. [Getting Started](./01-getting-started/)
 **Difficulty:** Beginner
 **Time:** 5 minutes
 **What you'll learn:**
@@ -27,7 +27,7 @@ Think of it as integration testing for AI tool use.
 
 ---
 
-### 2. [Linux MCP Server](./linux-mcp-server/)
+### 2. [Linux MCP Server](./02-linux-mcp-server/)
 **Difficulty:** Beginner
 **Time:** 10 minutes
 **What you'll learn:**
@@ -42,7 +42,7 @@ Think of it as integration testing for AI tool use.
 
 ---
 
-### 3. [Evolution Case Study](./evolution-case-study/)
+### 3. [Evolution Case Study](./03-evolution-case-study/)
 **Difficulty:** Intermediate
 **Time:** 15-20 minutes
 **What you'll learn:**
