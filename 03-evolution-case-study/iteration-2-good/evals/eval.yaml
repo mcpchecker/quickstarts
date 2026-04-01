@@ -5,17 +5,17 @@ metadata:
 config:
   # Use Claude Code as the AI agent
   agent:
-    type: "builtin.claude-code"
+    type: file
+    path: agent.yaml
 
   # MCP server configuration
   mcpConfigFile: mcp-config.yaml
 
   # LLM judge configuration
   llmJudge:
-    env:
-      baseUrlKey: JUDGE_BASE_URL
-      apiKeyKey: JUDGE_API_KEY
-      modelNameKey: JUDGE_MODEL_NAME
+    ref:
+      type: file
+      path: agent.yaml
 
   # Test tasks
   taskSets:
