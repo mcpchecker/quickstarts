@@ -181,17 +181,11 @@ Since the **code is identical**, differences in test results prove documentation
 
 ### Prerequisites
 
-See [getting-started](../getting-started/) for installation of:
+See [getting-started](../01-getting-started/) for installation of:
 - Claude Code
+- `@agentclientprotocol/claude-agent-acp` (Claude ACP agent adapter)
 - mcpchecker
 - uv (Python package manager)
-
-Set judge LLM environment variables:
-```bash
-export JUDGE_BASE_URL="https://api.openai.com/v1"
-export JUDGE_API_KEY="sk-your-key-here"
-export JUDGE_MODEL_NAME="gpt-4o-mini"
-```
 
 ### Run Both Iterations
 

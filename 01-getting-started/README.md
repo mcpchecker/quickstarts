@@ -35,18 +35,6 @@ The server uses **streamable HTTP transport** with `mcp.run(transport="streamabl
 
 ## Quick Start
 
-### 0. Configure the Judge LLM
-
-MCPChecker uses an LLM to verify test results. Set these environment variables before running tests, for instance with OpenAI:
-
-```bash
-export JUDGE_BASE_URL="https://api.openai.com/v1"
-export JUDGE_API_KEY="sk-your-key-here"
-export JUDGE_MODEL_NAME="gpt-4o-mini"
-```
-
-The judge LLM evaluates whether the agent completed tasks correctly by analyzing the agent's output.
-
 ### 1. Install Prerequisites
 
 **Install Claude Code** (AI agent):
@@ -59,6 +47,14 @@ curl -fsSL https://claude.ai/install.sh | bash
 ```
 
 See the [official installation guide](https://github.com/anthropics/claude-code?tab=readme-ov-file#get-started) for Windows and other installation methods.
+
+**Install the Claude ACP agent adapter:**
+
+```bash
+npm install -g @agentclientprotocol/claude-agent-acp
+```
+
+This provides the `claude-agent-acp` command used by MCPChecker to run Claude Code as an ACP-compatible agent.
 
 **Install uv** (Python package manager):
 ```bash
@@ -116,6 +112,20 @@ You should see:
 
 This quickstart includes a complete evaluation setup. Let's look at what gets tested and how it's defined:
 
+### The Agent Configuration (`evals/agent.yaml`)
+
+```yaml
+kind: Agent
+metadata:
+  name: "claude-code-acp"
+acp:
+  cmd: "claude-agent-acp"
+```
+
+**What this does:**
+- Defines an ACP (Agent Client Protocol) agent that uses Claude Code via the `claude-agent-acp` adapter
+- This agent configuration is referenced by both the eval runner and the LLM judge
+
 ### The Main Eval Configuration (`evals/eval.yaml`)
 
 ```yaml
@@ -124,19 +134,19 @@ metadata:
   name: "demo-server-test"
 
 config:
-  # Use Claude Code as the AI agent
+  # Use Claude Code as the AI agent (via ACP)
   agent:
-    type: "builtin.claude-code"
+    type: file
+    path: agent.yaml
 
   # MCP server configuration
   mcpConfigFile: mcp-config.yaml
 
-  # LLM judge configuration
+  # LLM judge configuration (reuses the same agent)
   llmJudge:
-    env:
-      baseUrlKey: JUDGE_BASE_URL
-      apiKeyKey: JUDGE_API_KEY
-      modelNameKey: JUDGE_MODEL_NAME
+    ref:
+      type: file
+      path: agent.yaml
 
   # Test tasks
   taskSets:
@@ -150,9 +160,9 @@ config:
 ```
 
 **What this does:**
-- Configures **Claude Code** as the agent that will attempt the tasks
+- Configures **Claude Code** as the agent via the ACP adapter defined in **agent.yaml**
 - Points to **mcp-config.yaml** to connect to your MCP server
-- Defines the **judge LLM** settings (using your environment variables)
+- The **LLM judge** also references **agent.yaml**, so no separate judge configuration is needed
 - Loads tasks from **tasks/add.yaml** and asserts the `add` tool must be used
 
 ### The Task Definition (`evals/tasks/add.yaml`)

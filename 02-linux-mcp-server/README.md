@@ -33,7 +33,15 @@ curl -fsSL https://anthropic.com/install-claude-code | sh
 
 For more installation options, see the [official installation guide](https://github.com/anthropics/claude-code).
 
-### 2. Install MCPChecker
+### 2. Install the Claude ACP Agent Adapter
+
+```bash
+npm install -g @agentclientprotocol/claude-agent-acp
+```
+
+This provides the `claude-agent-acp` command used by MCPChecker to run Claude Code as an ACP-compatible agent. It is also used as the LLM judge.
+
+### 3. Install MCPChecker
 
 Download the latest release:
 
@@ -44,7 +52,7 @@ chmod +x mcpchecker-linux-amd64
 sudo mv mcpchecker-linux-amd64 /usr/local/bin/mcpchecker
 ```
 
-### 3. Install Linux MCP Server
+### 4. Install Linux MCP Server
 
 ```bash
 pip install --user linux-mcp-server
@@ -61,22 +69,6 @@ which linux-mcp-server
 ```
 
 For more installation options and documentation, see the [Linux MCP Server documentation](https://rhel-lightspeed.github.io/linux-mcp-server/).
-
-### 4. Configure Judge LLM
-
-MCPChecker uses an LLM to verify test results. Set these environment variables:
-
-```bash
-export JUDGE_BASE_URL="https://api.openai.com/v1"
-export JUDGE_API_KEY="sk-your-key-here"
-export JUDGE_MODEL_NAME="gpt-4o-mini"
-```
-
-**Why a judge LLM?** Testing AI agents requires flexible verification. Instead of exact string matching, we use an LLM to verify if the output is semantically correct.
-
-For example, instead of checking for the exact string "Fedora Linux 43", the judge checks if the output "contains information about the operating system". This allows the test to pass even if the formatting varies, as long as the required information is present.
-
-Each verification step includes a `reason` explaining what the judge is checking, which helps with debugging when tests fail.
 
 ## What Gets Tested
 
